@@ -9,6 +9,7 @@ import rootReducer from './modules';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
+import {BrowserRouter} from 'react-router-dom';
 
 const store = createStore(
   rootReducer, 
@@ -16,10 +17,12 @@ const store = createStore(
   );
 // 여러개의 미들웨어를 적용 가능하다.
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
