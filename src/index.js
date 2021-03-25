@@ -6,10 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './modules';
-import myLogger from './middlewares/myLogger';
+import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import ReduxThunk from 'redux-thunk';
 
-const store = createStore(rootReducer, applyMiddleware(myLogger));
-
+const store = createStore(
+  rootReducer, 
+  composeWithDevTools(applyMiddleware(ReduxThunk, logger))
+  );
+// 여러개의 미들웨어를 적용 가능하다.
 ReactDOM.render(
   <Provider store={store}>
     <App />
